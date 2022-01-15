@@ -7,6 +7,14 @@
       <mat-form-field>
         <input
           matInput
+          [(ngModel)]="userData.Name"
+          placeholder="Firstname Lastname"
+          type="text"
+          name="Name"
+          required
+        >
+        <input
+          matInput
           [(ngModel)]="userData.Username"
           placeholder="Username"
           type="text"
