@@ -15,7 +15,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-registration-form.component.scss'],
 })
 export class UserRegistrationFormComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userData = {
+    Name: '',
+    Username: '',
+    Password: '',
+    Email: '',
+    Birthday: '',
+  };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -32,13 +38,18 @@ export class UserRegistrationFormComponent implements OnInit {
         // Logic for a successful user registration goes here! (To be implemented)
         this.dialogRef.close(); // This will close the modal on success!
         console.log(result);
-        this.snackBar.open(result, 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          `The user ${result.Username} has been created.`,
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       },
       (result) => {
         console.log(result);
-        this.snackBar.open(result, 'OK', {
+
+        this.snackBar.open(`Could not create user.`, 'OK', {
           duration: 2000,
         });
       }

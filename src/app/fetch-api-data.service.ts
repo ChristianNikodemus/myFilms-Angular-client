@@ -19,6 +19,37 @@ const headers = {
   }),
 };
 
+export interface Movie {
+  _id: string;
+  Title: string;
+  Description: string;
+  Year: string;
+  Genre: {
+    Title: string;
+    Description: string;
+  };
+  Director: {
+    Name: string;
+    Bio: string;
+    Birthyear: string;
+    Deathyear: string;
+  };
+  ImagePath: string;
+  Featured: boolean;
+}
+
+export interface User {
+  _id: string;
+  Name: string;
+  Username: string;
+  Email: string;
+  Password: string;
+  Birthday: string;
+  FavouriteMovies: Array<string>;
+}
+
+export type RegistrationUser = Omit<User, 'FavouriteMovies' | '_id'>;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,26 +59,29 @@ export class FetchApiDataService {
   // --------------- Endpoints --------------------
 
   // User registration
-  public userRegistration(userDetails: any): Observable<any> {
+  public userRegistration(userDetails: RegistrationUser): Observable<User> {
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'users/register', userDetails)
+      .post<User>(apiUrl + 'users/register', userDetails)
       .pipe(catchError(this.handleError));
   }
 
   // User login
-  public userLogin(userDetails: any): Observable<any> {
+  public userLogin(userDetails: {
+    Username: string;
+    Password: string;
+  }): Observable<{ user: User; token: string }> {
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'login', userDetails)
+      .post<{ user: User; token: string }>(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
   }
 
   // Get all movies
-  getAllMovies(): Observable<any> {
+  getAllMovies(): Observable<Array<Movie>> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'movies', {
+      .get<Array<Movie>>(apiUrl + 'movies', {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -56,10 +90,10 @@ export class FetchApiDataService {
   }
 
   // Get one movie
-  getMovie(title: any): Observable<any> {
+  getMovie(title: string): Observable<Movie> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + `movies/:title`, {
+      .get<Movie>(apiUrl + `movies/:title`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -180,7 +214,7 @@ export class FetchApiDataService {
     return body || {};
   }
 
-  private handleError(error: HttpErrorResponse): any {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
