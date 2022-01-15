@@ -48,7 +48,12 @@ export interface User {
   FavouriteMovies: Array<string>;
 }
 
-export type RegistrationUser = Omit<User, 'FavouriteMovies' | '_id'>;
+export type RegistrationUser = Omit<User, '_id' | 'FavouriteMovies'>;
+
+export type LoginUser = Omit<
+  User,
+  '_id' | 'Name' | 'Email' | 'Birthday' | 'FavouriteMovies'
+>;
 
 @Injectable({
   providedIn: 'root',
@@ -67,10 +72,9 @@ export class FetchApiDataService {
   }
 
   // User login
-  public userLogin(userDetails: {
-    Username: string;
-    Password: string;
-  }): Observable<{ user: User; token: string }> {
+  public userLogin(
+    userDetails: LoginUser
+  ): Observable<{ user: User; token: string }> {
     console.log(userDetails);
     return this.http
       .post<{ user: User; token: string }>(apiUrl + 'login', userDetails)
