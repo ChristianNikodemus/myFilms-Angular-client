@@ -81,7 +81,7 @@ export class FetchApiDataService {
   }
 
   // Get all movies
-  getAllMovies(token: string): Observable<Array<Movie>> {
+  getAllMovies(token: any): Observable<Array<Movie>> {
     return this.http
       .get<Array<Movie>>(apiUrl + 'movies', factorizeOptions(token))
       .pipe(map(this.extractResponseData), catchError(this.handleError));
