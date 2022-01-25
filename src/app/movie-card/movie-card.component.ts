@@ -7,6 +7,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent implements OnInit {
+  token = localStorage.getItem('token');
   movies: any[] = [];
   constructor(public fetchApiData: FetchApiDataService) {}
 
@@ -15,7 +16,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+    this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
       this.movies = resp;
       console.log(this.movies);
       return this.movies;
