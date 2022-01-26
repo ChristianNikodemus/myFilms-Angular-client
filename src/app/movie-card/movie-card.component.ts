@@ -9,6 +9,12 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 export class MovieCardComponent implements OnInit {
   token = localStorage.getItem('token');
 
+  // if(token) {
+  //   this.fetchApiData.getAllMovies(token);
+  // } else {
+  //   return token = '';
+  // }
+
   movies: any[] = [];
   constructor(public fetchApiData: FetchApiDataService) {}
 

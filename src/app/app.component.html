@@ -1,7 +1,8 @@
-<div class="main-page">
-  <h1>
+<mat-card class="main-page">
+  <mat-card-title
+  style="margin-bottom: 2em;">
     Welcome to myFlix!
-  </h1>
+  </mat-card-title>
   <button
     mat-raised-button
     (click)="openUserRegistrationDialog()"
@@ -14,6 +15,7 @@
   <button
     mat-raised-button
     (click)="openUserLoginDialog()"
+    style="margin-right: 10px;"
     color="primary"
   >
     Login
@@ -26,4 +28,4 @@
   >
     All Movies
   </button>
-</div>
+</mat-card>
