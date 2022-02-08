@@ -23,7 +23,7 @@ export interface Movie {
   Description: string;
   Year: string;
   Genre: Genre;
-  Director: Director;
+  Director: Array<Director>;
   ImagePath: string;
   Featured: boolean;
 }

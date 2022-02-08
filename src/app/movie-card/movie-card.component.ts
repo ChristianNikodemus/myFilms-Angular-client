@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service';
+import { FetchApiDataService, Movie } from '../fetch-api-data.service';
 
 @Component({
   selector: 'app-movie-card',
@@ -15,7 +15,7 @@ export class MovieCardComponent implements OnInit {
   //   return token = '';
   // }
 
-  movies: any[] = [];
+  movies: Array<Omit<Movie, 'Director'> & { Director: string }> = [];
   constructor(public fetchApiData: FetchApiDataService) {}
 
   ngOnInit(): void {
@@ -24,7 +24,11 @@ export class MovieCardComponent implements OnInit {
 
   getMovies(): void {
     this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
-      this.movies = resp;
+      this.movies = resp.map((m: Movie) => {
+        const n = { ...m };
+        n.Director = m.Director.map((d) => d.Name).join(', ');
+        return n;
+      });
       console.log(this.movies);
       return this.movies;
     });
