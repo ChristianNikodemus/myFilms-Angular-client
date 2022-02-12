@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService, Movie } from '../fetch-api-data.service';
 
+type DisplayMovie = Omit<Movie, 'Director' | 'Genre'> & {
+  Director: string;
+  Genre: string;
+};
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -9,13 +14,7 @@ import { FetchApiDataService, Movie } from '../fetch-api-data.service';
 export class MovieCardComponent implements OnInit {
   token = localStorage.getItem('token');
 
-  // if(token) {
-  //   this.fetchApiData.getAllMovies(token);
-  // } else {
-  //   return token = '';
-  // }
-
-  movies: Array<Omit<Movie, 'Director'> & { Director: string }> = [];
+  movies: Array<DisplayMovie> = [];
   constructor(public fetchApiData: FetchApiDataService) {}
 
   ngOnInit(): void {
@@ -23,14 +22,14 @@ export class MovieCardComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
-      this.movies = resp.map((m: Movie) => {
-        const n = { ...m };
-        n.Director = m.Director.map((d) => d.Name).join(', ');
-        return n;
+    this.token &&
+      this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
+        this.movies = resp.map((m: Movie) => {
+          return Object.assign({}, m, {
+            Director: m.Director.map((d) => d.Name).join(', '),
+            Genre: m.Genre.map((g) => g.Title).join(', '),
+          });
+        });
       });
-      console.log(this.movies);
-      return this.movies;
-    });
   }
 }

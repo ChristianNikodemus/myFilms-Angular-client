@@ -22,7 +22,7 @@ export interface Movie {
   Title: string;
   Description: string;
   Year: string;
-  Genre: Genre;
+  Genre: Array<Genre>;
   Director: Array<Director>;
   ImagePath: string;
   Featured: boolean;
@@ -81,7 +81,7 @@ export class FetchApiDataService {
   }
 
   // Get all movies
-  getAllMovies(token: any): Observable<Array<Movie>> {
+  getAllMovies(token: string): Observable<Array<Movie>> {
     return this.http
       .get<Array<Movie>>(apiUrl + 'movies', factorizeOptions(token))
       .pipe(map(this.extractResponseData), catchError(this.handleError));
