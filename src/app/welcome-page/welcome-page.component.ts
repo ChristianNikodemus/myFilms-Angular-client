@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit {
+  @HostBinding('class') class = 'welcome-page';
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}

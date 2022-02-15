@@ -50,8 +50,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.main-page {
-  text-align: center;
-  width: 300px;
-  // margin: auto;
+.welcome-page {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  //background-color: red;
 }
