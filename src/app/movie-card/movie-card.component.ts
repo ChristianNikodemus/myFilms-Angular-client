@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService, Movie } from '../fetch-api-data.service';
+import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
+import { MatDialog } from '@angular/material/dialog';
 
 type DisplayMovie = Omit<Movie, 'Director' | 'Genre'> & {
   Director: string;
@@ -15,10 +17,19 @@ export class MovieCardComponent implements OnInit {
   token = localStorage.getItem('token');
 
   movies: Array<DisplayMovie> = [];
-  constructor(public fetchApiData: FetchApiDataService) {}
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getMovies();
+  }
+
+  openMovieDescriptionDialog(): void {
+    this.dialog.open(MovieDescriptionComponent, {
+      width: '280px',
+    });
   }
 
   getMovies(): void {
