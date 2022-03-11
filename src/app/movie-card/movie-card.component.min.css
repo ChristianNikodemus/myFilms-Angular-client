@@ -1,0 +1,1 @@
+.movie-cards{display:grid;grid-template-columns:repeat(3, 1fr);grid-auto-rows:auto;grid-gap:1rem;margin:1rem}.mat-card{flex:1 1 auto}
