@@ -26,9 +26,10 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
-  openMovieDescriptionDialog(): void {
+  openMovieDescriptionDialog(Title: string, Description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
-      width: '280px',
+      data: { Title, Description },
+      width: '50%',
     });
   }
 
