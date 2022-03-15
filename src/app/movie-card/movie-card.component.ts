@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService, Movie } from '../fetch-api-data.service';
 import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
+import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 import { MatDialog } from '@angular/material/dialog';
 
 type DisplayMovie = Omit<Movie, 'Director' | 'Genre'> & {
@@ -29,6 +30,13 @@ export class MovieCardComponent implements OnInit {
   openMovieDescriptionDialog(Title: string, Description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: { Title, Description },
+      width: '50%',
+    });
+  }
+
+  openMovieDirectorDialog(Title: string, Director: string): void {
+    this.dialog.open(MovieDirectorComponent, {
+      data: { Title, Director },
       width: '50%',
     });
   }
