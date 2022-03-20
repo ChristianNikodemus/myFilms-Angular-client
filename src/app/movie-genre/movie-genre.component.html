@@ -1,5 +1,8 @@
 <mat-card>
   <mat-card-title>{{ data.Title }}</mat-card-title>
   <mat-card-subtitle>Genre(s):</mat-card-subtitle>
-  <mat-card-content>{{ data.Genre }}</mat-card-content>
+  <mat-card-content *ngFor="let d of data.Genre" class="dialog-border">
+    <p>Genre: {{ d.Title }}</p>
+    <p>Description: {{ d.Description }}</p>
+  </mat-card-content>
 </mat-card>

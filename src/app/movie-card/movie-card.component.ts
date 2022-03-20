@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService, Movie } from '../fetch-api-data.service';
+import {
+  FetchApiDataService,
+  Movie,
+  Genre,
+  Director,
+} from '../fetch-api-data.service';
 import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MatDialog } from '@angular/material/dialog';
 
-type DisplayMovie = Omit<Movie, 'Director' | 'Genre'> & {
-  Director: string;
-  Genre: string;
+type DisplayMovie = Movie & {
+  DirectorDisplay: string;
+  GenreDisplay: string;
 };
 
 @Component({
@@ -35,14 +40,14 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openMovieDirectorDialog(Title: string, Director: string): void {
+  openMovieDirectorDialog(Title: string, Director: Array<Director>): void {
     this.dialog.open(MovieDirectorComponent, {
       data: { Title, Director },
       width: '50%',
     });
   }
 
-  openMovieGenreDialog(Title: string, Genre: string): void {
+  openMovieGenreDialog(Title: string, Genre: Array<Genre>): void {
     this.dialog.open(MovieGenreComponent, {
       data: { Title, Genre },
       width: '50%',
@@ -54,8 +59,8 @@ export class MovieCardComponent implements OnInit {
       this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
         this.movies = resp.map((m: Movie) => {
           return Object.assign({}, m, {
-            Director: m.Director.map((d) => d.Name).join(', '),
-            Genre: m.Genre.map((g) => g.Title).join(', '),
+            DirectorDisplay: m.Director.map((d) => d.Name).join(', '),
+            GenreDisplay: m.Genre.map((g) => g.Title).join(', '),
           });
         });
       });

@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-title>{{ data.Title }}</mat-card-title>
   <mat-card-subtitle>Director(s):</mat-card-subtitle>
-  <mat-card-content>{{ data.Director }}</mat-card-content>
-  <!-- <mat-card-content>{{ data.Director }}</mat-card-content> -->
+  <mat-card-content *ngFor="let d of data.Director" class="dialog-border">
+    <p>Name: {{ d.Name }}</p>
+    <p>Biography: {{ d.Bio }}</p>
+    <p>Birthyear: {{ d.Birthyear }}</p>
+    <p>Death: {{ d.Deathyear }}</p>
+  </mat-card-content>
 </mat-card>
