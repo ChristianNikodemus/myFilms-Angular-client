@@ -2,3 +2,18 @@
   border-top: 1px solid grey;
   padding-top: 1em;
 }
+
+.description-box {
+  margin-top: 0.5em;
+  padding: 0.5em 1em 0.5em 0.5em;
+  max-height: 200px;
+  overflow-y: scroll;
+  box-shadow: inset 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    inset 0px 1px 1px 0px rgb(0 0 0 / 14%),
+    inset 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  // box-shadow: inset 0 0 3px #000;
+}
+
+.sub-info-title {
+  color: #3f51b5;
+}
