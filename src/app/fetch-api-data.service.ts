@@ -127,7 +127,7 @@ export class FetchApiDataService {
     console.log(apiUrl + `users/${username}/movies/${movieId}`);
     return this.http
       .post<User>(
-        apiUrl + `users/:Username/movies/:MovieID`,
+        apiUrl + `users/${username}/movies/${movieId}`,
         {},
         factorizeOptions(token)
       )
@@ -156,8 +156,8 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
-  // Delete a movie from the favourite movies
-  deleteMovie(
+  // Remove a movie from the favourite movies
+  removeMovie(
     username: string,
     token: string,
     movieid: string

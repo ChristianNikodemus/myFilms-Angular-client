@@ -4,6 +4,7 @@ import {
   Movie,
   Genre,
   Director,
+  User,
 } from '../fetch-api-data.service';
 import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
@@ -21,9 +22,11 @@ type DisplayMovie = Movie & {
   styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent implements OnInit {
+  username = localStorage.getItem('user');
   token = localStorage.getItem('token');
 
   movies: Array<DisplayMovie> = [];
+  user: User | null = null;
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog
@@ -31,6 +34,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.getUser();
   }
 
   openMovieDescriptionDialog(Title: string, Description: string): void {
@@ -54,6 +58,34 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  addFavorite(movieID: string): void {
+    if (this.username && this.token) {
+      this.fetchApiData
+        .addMovie(this.username, this.token, movieID)
+        .subscribe((user) => {
+          console.log('-->', user);
+          this.user = user;
+        });
+    }
+  }
+
+  removeFavorite(movieID: string): void {
+    if (this.username && this.token) {
+      this.fetchApiData
+        .removeMovie(this.username, this.token, movieID)
+        .subscribe((user) => {
+          console.log('-->', user);
+          this.user = user;
+        });
+    }
+  }
+
+  isFavorite(movieID: string): boolean {
+    if (this.user) {
+      return this.user.FavouriteMovies.includes(movieID);
+    } else return false;
+  }
+
   getMovies(): void {
     this.token &&
       this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
@@ -64,5 +96,16 @@ export class MovieCardComponent implements OnInit {
           });
         });
       });
+  }
+
+  getUser(): void {
+    console.log(this.token, this.username);
+    if (this.token && this.username) {
+      this.fetchApiData
+        .getUser(this.username, this.token)
+        .subscribe((resp: any) => {
+          this.user = resp;
+        });
+    }
   }
 }
