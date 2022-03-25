@@ -13,6 +13,6 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {}
 
   goToProfile(): void {
-    this.router.navigate(['movies']);
+    this.router.navigate(['profile']);
   }
 }
