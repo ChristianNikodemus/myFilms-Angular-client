@@ -6,7 +6,10 @@
   margin-right: 1em;
 }
 
-// .mat-toolbar-row,
-// .mat-toolbar-single-row {
-//   padding: 0 100px;
-// }
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding: 0 100px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
