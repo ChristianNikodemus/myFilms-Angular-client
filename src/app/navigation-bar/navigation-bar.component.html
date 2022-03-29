@@ -1,10 +1,12 @@
 <mat-toolbar color="primary">
-  <span>myFilms</span>
+  <span class="nav-logo" (click)="goToMovies()">myFilms</span>
 
   <span class="nav-spacer"></span>
 
-  <a mat-flat-button routerLink="." class="nav-profile" (click)="goToProfile()">myProfile <!--{{ User.name }}--></a>
+  <a mat-flat-button routerLink="." class="nav-profile" (click)="goToProfile()"
+    >myProfile
+    <!--{{ User.name }}--></a
+  >
 
   <a mat-flat-button routerLink=".">Logout</a>
- 
 </mat-toolbar>

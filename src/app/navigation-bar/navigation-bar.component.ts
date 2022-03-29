@@ -17,4 +17,8 @@ export class NavigationBarComponent implements OnInit {
   goToProfile(): void {
     this.router.navigate(['profile']);
   }
+
+  goToMovies(): void {
+    this.router.navigate(['movies']);
+  }
 }

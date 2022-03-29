@@ -1,12 +1,37 @@
+import {
+  FetchApiDataService,
+  Movie,
+  Genre,
+  Director,
+  User,
+} from '../fetch-api-data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
-  styleUrls: ['./profile-page.component.scss'],
+  styleUrls: ['./profile-page.component.scss', '../app.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
-  constructor() {}
+  username = localStorage.getItem('user');
+  token = localStorage.getItem('token');
 
-  ngOnInit(): void {}
+  user: User | null = null;
+
+  constructor(public fetchApiData: FetchApiDataService) {}
+
+  ngOnInit(): void {
+    this.getUser();
+  }
+
+  getUser(): void {
+    console.log(this.token, this.username);
+    if (this.token && this.username) {
+      this.fetchApiData
+        .getUser(this.username, this.token)
+        .subscribe((resp: any) => {
+          this.user = resp;
+        });
+    }
+  }
 }

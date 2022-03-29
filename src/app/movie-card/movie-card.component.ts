@@ -19,7 +19,7 @@ type DisplayMovie = Movie & {
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss'],
+  styleUrls: ['./movie-card.component.scss', '../app.component.scss'],
 })
 export class MovieCardComponent implements OnInit {
   username = localStorage.getItem('user');
