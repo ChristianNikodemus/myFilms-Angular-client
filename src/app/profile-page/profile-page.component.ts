@@ -18,6 +18,10 @@ export class ProfilePageComponent implements OnInit {
 
   user: User | null = null;
 
+  // date = new Intl.DateTimeFormat('en-US', {
+  //   dateStyle: 'full',
+  // }).format(new Date(this.user.Birthday.dateTime));
+
   constructor(public fetchApiData: FetchApiDataService) {}
 
   ngOnInit(): void {

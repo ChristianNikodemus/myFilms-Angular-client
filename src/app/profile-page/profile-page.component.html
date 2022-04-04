@@ -1,5 +1,14 @@
 <app-navigation-bar></app-navigation-bar>
 <div class="profile-container">
   <h1>Welcome, {{ user?.Username }}!</h1>
+  
+  <h3>Your Account Info:</h3>
+
+  <p>Name: {{ user?.Name }}</p>
+  <p>Username: {{ user?.Username }}</p>
+  <p>Email: {{ user?.Email }}</p>
+  <!-- <p>Password: {{ user?.Password }}</p> -->
+  <p>Birthday: {{ user?.Birthday }}</p>
+  <p>Favourite movies: {{ user?.FavouriteMovies }}</p>
 </div>
 
