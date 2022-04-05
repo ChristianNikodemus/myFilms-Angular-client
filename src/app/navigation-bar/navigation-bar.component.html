@@ -3,10 +3,9 @@
 
   <span class="nav-spacer"></span>
 
-  <a mat-flat-button routerLink="." class="nav-profile" (click)="goToProfile()"
-    >myProfile
-    <!--{{ User.name }}--></a
-  >
+  <a mat-flat-button routerLink="." class="nav-profile" (click)="goToProfile()">
+    <mat-icon>account_circle</mat-icon> {{ user?.Username }}
+  </a>
 
   <a mat-flat-button routerLink="." (click)="logout()">Logout</a>
 </mat-toolbar>
