@@ -6,6 +6,8 @@ import {
   User,
 } from '../fetch-api-data.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile-page',
@@ -13,8 +15,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-page.component.scss', '../app.component.scss'],
 })
 export class ProfilePageComponent implements OnInit {
-  username = localStorage.getItem('user');
-  token = localStorage.getItem('token');
+  username: any = localStorage.getItem('user');
+  token: any = localStorage.getItem('token');
 
   user: User | null = null;
 
@@ -22,7 +24,11 @@ export class ProfilePageComponent implements OnInit {
   //   dateStyle: 'full',
   // }).format(new Date(this.user.Birthday.dateTime));
 
-  constructor(public fetchApiData: FetchApiDataService) {}
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public snackBar: MatSnackBar,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getUser();
@@ -36,6 +42,18 @@ export class ProfilePageComponent implements OnInit {
         .subscribe((resp: any) => {
           this.user = resp;
         });
+    }
+  }
+
+  deleteUser(): void {
+    if (confirm('Are you sure? This cannot be undone.')) {
+      this.fetchApiData.deleteUser(this.token, this.username).subscribe(() => {
+        this.snackBar.open(`${this.username} has been removed!`, 'OK', {
+          duration: 4000,
+        });
+        localStorage.clear();
+      });
+      this.router.navigate(['welcome']);
     }
   }
 }

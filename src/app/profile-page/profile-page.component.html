@@ -10,5 +10,14 @@
   <!-- <p>Password: {{ user?.Password }}</p> -->
   <p>Birthday: {{ user?.Birthday }}</p>
   <p>Favourite movies: {{ user?.FavouriteMovies }}</p>
+
+  <h3>Warning: Danger Zone!</h3>
+  <button
+  mat-raised-button
+  (click)="deleteUser()"
+  color="warn"
+>
+  Delete profile
+</button>
 </div>
 
