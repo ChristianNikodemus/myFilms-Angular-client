@@ -21,4 +21,9 @@ export class NavigationBarComponent implements OnInit {
   goToMovies(): void {
     this.router.navigate(['movies']);
   }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/']);
+  }
 }
