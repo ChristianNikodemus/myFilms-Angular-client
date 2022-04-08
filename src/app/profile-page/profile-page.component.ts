@@ -5,9 +5,11 @@ import {
   Director,
   User,
 } from '../fetch-api-data.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileEditPageComponent } from '../profile-edit-page/profile-edit-page.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -38,7 +40,8 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
-    public router: Router
+    public router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -56,19 +59,10 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
-  editUser(): void {
-    console.log(this.userData);
-    this.fetchApiData
-      .editUser(this.token, this.username, this.userData)
-      .subscribe((resp) => {
-        localStorage.setItem('user', resp.Username); // update profile in localstorage
-        this.snackBar.open('Your profile was updated successfully!', 'OK', {
-          duration: 4000,
-        });
-        setTimeout(() => {
-          window.location.reload();
-        });
-      });
+  openProfileEditPage(): void {
+    this.dialog.open(ProfileEditPageComponent, {
+      width: '280px',
+    });
   }
 
   deleteUser(): void {
