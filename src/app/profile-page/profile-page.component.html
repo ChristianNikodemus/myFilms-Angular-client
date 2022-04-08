@@ -9,7 +9,70 @@
   <p>Email: {{ user?.Email }}</p>
   <!-- <p>Password: {{ user?.Password }}</p> -->
   <p>Birthday: {{ user?.Birthday }}</p>
-  <p>Favourite movies: {{ user?.FavouriteMovies }}</p>
+
+  <h3>Edit Profile Information</h3>
+  <form>
+    <mat-form-field>
+      <input
+      matInput
+      [(ngModel)]="userData.Name"
+      placeholder="Firstname Lastname"
+      value={{user.Name}}
+      type="text"
+      name="Name"
+      required
+      >
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <input
+      matInput
+      [(ngModel)]="userData.Username"
+      placeholder="Username"
+      value={{user.Username}}
+      type="text"
+      name="Username"
+      required
+      >
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <input
+      matInput
+      [(ngModel)]="userData.Email"
+      placeholder="Email"
+      value={{user.Email}}
+      type="text"
+      name="Email"
+      required
+      >
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <input
+      matInput
+      [(ngModel)]="userData.Birthday"
+      placeholder="Birthday"
+      value={{user.Birthday}}
+      type="text"
+      name="Birthday"
+      required
+      >
+    </mat-form-field>
+  </form>
+  <button
+  mat-raised-button
+  (click)="editUser()"
+  color="primary"
+  >
+
+  Edit profile
+</button>
+
+  <h3>Favourite Movies</h3>
+  <p>{{ user?.FavouriteMovies }}</p>
+
+
 
   <h3>Warning: Danger Zone!</h3>
   <button

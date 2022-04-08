@@ -5,7 +5,7 @@ import {
   Director,
   User,
 } from '../fetch-api-data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -17,8 +17,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProfilePageComponent implements OnInit {
   username: any = localStorage.getItem('user');
   token: any = localStorage.getItem('token');
+  userDetails: any = localStorage.getItem('userDetails');
 
-  user: User | null = null;
+  // user: User | null = null;
+
+  user: any = {};
+
+  @Input() userData = {
+    Name: this.user.Name,
+    Username: this.user.Username,
+    Email: this.user.Email,
+    Password: '',
+    Birthday: this.user.Birthday,
+  };
 
   // date = new Intl.DateTimeFormat('en-US', {
   //   dateStyle: 'full',
@@ -43,6 +54,21 @@ export class ProfilePageComponent implements OnInit {
           this.user = resp;
         });
     }
+  }
+
+  editUser(): void {
+    console.log(this.userData);
+    this.fetchApiData
+      .editUser(this.token, this.username, this.userData)
+      .subscribe((resp) => {
+        localStorage.setItem('user', resp.Username); // update profile in localstorage
+        this.snackBar.open('Your profile was updated successfully!', 'OK', {
+          duration: 4000,
+        });
+        setTimeout(() => {
+          window.location.reload();
+        });
+      });
   }
 
   deleteUser(): void {
