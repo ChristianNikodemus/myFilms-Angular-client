@@ -19,8 +19,11 @@
   Edit profile
 </button>
 
-  <h3>Favourite Movies</h3>
-  <p>{{ user?.FavouriteMovies }}</p>
+<h3>Favourite Movies</h3>
+<mat-card *ngFor="let movie of favMovies; let i = index">
+    <mat-card-title>{{ movie.Title }}</mat-card-title>
+    <img mat-card-lg-image src="https://my-films-db.herokuapp.com/{{ movie.ImagePath }}">
+</mat-card>
 
 
 
