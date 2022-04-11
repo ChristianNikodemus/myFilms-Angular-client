@@ -1,49 +1,56 @@
 <app-navigation-bar></app-navigation-bar>
 <div class="profile-container">
   <h1 class="welcome-text">Welcome, {{ user?.Username }}!</h1>
+
+  <div class="flex-container">
+    <div class="flex-left">
+      <mat-card>
+        <mat-card-title class="info-header">Your Account Info:</mat-card-title>
+        <mat-card-content>
+          <p>Name: {{ user?.Name }}</p>
+          <p>Username: {{ user?.Username }}</p>
+          <p>Email: {{ user?.Email }}</p>
+        <!-- <p>Password: {{ user?.Password }}</p> -->
+        <p>Birthday: {{ user?.Birthday }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+          mat-raised-button
+          (click)="openProfileEditPage()"
+          color="primary"
+          >
+          Edit Profile Information
+        </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="flex-right">
+      <mat-card *ngFor="let movie of favMovies; let i = index">
+        <mat-card-title class="info-header">Favourite Movies</mat-card-title>
+        <mat-card-title>{{ movie.Title }}</mat-card-title>
+        <img mat-card-lg-image src="https://my-films-db.herokuapp.com/{{ movie.ImagePath }}">
+        <mat-card-actions>
+          <mat-icon *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)"
+          >favorite</mat-icon>
+          <mat-icon *ngIf="!isFavorite(movie._id)"
+          >favorite_border</mat-icon>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="danger-zone">
+    <h2>Warning: Danger Zone!</h2>
+    <button
+    mat-raised-button
+    (click)="deleteUser()"
+    color="warn"
+  >
+    Delete profile
+  </button>
+  </div>
   
-  <mat-card>
-    <mat-card-title>Your Account Info:</mat-card-title>
-    <mat-card-content>
-      <p>Name: {{ user?.Name }}</p>
-      <p>Username: {{ user?.Username }}</p>
-      <p>Email: {{ user?.Email }}</p>
-    <!-- <p>Password: {{ user?.Password }}</p> -->
-    <p>Birthday: {{ user?.Birthday }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button
-      mat-raised-button
-      (click)="openProfileEditPage()"
-      color="primary"
-      >
-      Edit profile
-    </button>
-    </mat-card-actions>
-  </mat-card>
 
-<h2>Favourite Movies</h2>
-<mat-card *ngFor="let movie of favMovies; let i = index">
-  <mat-card-title>{{ movie.Title }}</mat-card-title>
-  <img mat-card-lg-image src="https://my-films-db.herokuapp.com/{{ movie.ImagePath }}">
-  <mat-card-actions>
-    <mat-icon *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)"
-    >favorite</mat-icon>
-    <mat-icon *ngIf="!isFavorite(movie._id)"
-    >favorite_border</mat-icon>
-  </mat-card-actions>
-</mat-card>
-
-
-
-
-  <h2>Warning: Danger Zone!</h2>
-  <button
-  mat-raised-button
-  (click)="deleteUser()"
-  color="warn"
->
-  Delete profile
-</button>
 </div>
 
