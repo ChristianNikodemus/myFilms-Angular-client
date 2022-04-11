@@ -27,6 +27,7 @@ export class ProfilePageComponent implements OnInit {
   userDetails: any = localStorage.getItem('userDetails');
   movies: Array<DisplayMovie> = [];
   favMovies: any[] = [];
+  favs: any = null;
   displayElement: boolean = false;
 
   // user: User | null = null;
@@ -74,6 +75,18 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  getMovies(): void {
+    this.token &&
+      this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
+        this.movies = resp.map((m: Movie) => {
+          return Object.assign({}, m, {
+            DirectorDisplay: m.Director.map((d) => d.Name).join(', '),
+            GenreDisplay: m.Genre.map((g) => g.Title).join(', '),
+          });
+        });
+      });
+  }
+
   getFavs(): void {
     let movies: any[] = [];
     this.fetchApiData.getAllMovies(this.token).subscribe((res: any) => {
@@ -87,16 +100,21 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  getMovies(): void {
-    this.token &&
-      this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
-        this.movies = resp.map((m: Movie) => {
-          return Object.assign({}, m, {
-            DirectorDisplay: m.Director.map((d) => d.Name).join(', '),
-            GenreDisplay: m.Genre.map((g) => g.Title).join(', '),
-          });
+  removeFavorite(movieID: string): void {
+    if (this.username && this.token) {
+      this.fetchApiData
+        .removeMovie(this.username, this.token, movieID)
+        .subscribe((user) => {
+          console.log('-->', user);
+          this.user = user;
         });
-      });
+    }
+  }
+
+  isFavorite(movieID: string): boolean {
+    if (this.user) {
+      return this.user.FavouriteMovies.includes(movieID);
+    } else return false;
   }
 
   deleteUser(): void {
