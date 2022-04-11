@@ -71,7 +71,7 @@ export class ProfilePageComponent implements OnInit {
 
   openProfileEditPage(): void {
     this.dialog.open(ProfileEditPageComponent, {
-      width: '280px',
+      width: '300px',
     });
   }
 

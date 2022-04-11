@@ -1,25 +1,28 @@
 <app-navigation-bar></app-navigation-bar>
 <div class="profile-container">
-  <h1>Welcome, {{ user?.Username }}!</h1>
+  <h1 class="welcome-text">Welcome, {{ user?.Username }}!</h1>
   
-  <h3>Your Account Info:</h3>
+  <mat-card>
+    <mat-card-title>Your Account Info:</mat-card-title>
+    <mat-card-content>
+      <p>Name: {{ user?.Name }}</p>
+      <p>Username: {{ user?.Username }}</p>
+      <p>Email: {{ user?.Email }}</p>
+    <!-- <p>Password: {{ user?.Password }}</p> -->
+    <p>Birthday: {{ user?.Birthday }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+      mat-raised-button
+      (click)="openProfileEditPage()"
+      color="primary"
+      >
+      Edit profile
+    </button>
+    </mat-card-actions>
+  </mat-card>
 
-  <p>Name: {{ user?.Name }}</p>
-  <p>Username: {{ user?.Username }}</p>
-  <p>Email: {{ user?.Email }}</p>
-  <!-- <p>Password: {{ user?.Password }}</p> -->
-  <p>Birthday: {{ user?.Birthday }}</p>
-
-  <button
-  mat-raised-button
-  (click)="openProfileEditPage()"
-  color="primary"
-  >
-
-  Edit profile
-</button>
-
-<h3>Favourite Movies</h3>
+<h2>Favourite Movies</h2>
 <mat-card *ngFor="let movie of favMovies; let i = index">
   <mat-card-title>{{ movie.Title }}</mat-card-title>
   <img mat-card-lg-image src="https://my-films-db.herokuapp.com/{{ movie.ImagePath }}">
@@ -34,7 +37,7 @@
 
 
 
-  <h3>Warning: Danger Zone!</h3>
+  <h2>Warning: Danger Zone!</h2>
   <button
   mat-raised-button
   (click)="deleteUser()"
