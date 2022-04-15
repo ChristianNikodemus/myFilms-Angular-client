@@ -21,10 +21,22 @@
   margin-left: 1em;
 }
 
-.info-header {
-  text-align: center;
-  margin-bottom: 1em;
+.movie-img-fav{
+  width: auto;
+  margin-top: 1em;
 }
+
+.movie-title-fav{
+  display: inline-block;
+  margin: 8px !important;
+  margin-top: 1em !important;
+  vertical-align: top;
+}
+
+// .info-header {
+//   text-align: center;
+//   margin-bottom: 1em;
+// }
 
 .danger-zone {
   text-align: center;
@@ -36,6 +48,25 @@
   display: inline-block;
   margin-right: 1em;
   margin-top: 1em;
+}
+
+@media only screen and (max-width: 950px) {
+  .flex-container {
+    display: block;
+  }
+
+  .flex-left {
+    margin: 1em;
+  }
+  
+  .flex-right {
+    margin: 1em;
+  }
+}
 
 
+@media only screen and (max-width: 500px) {
+  .profile-container {
+    margin: 64px 1em;
+  }
 }

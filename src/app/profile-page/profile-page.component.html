@@ -26,16 +26,24 @@
     </div>
 
     <div class="flex-right">
-      <mat-card *ngFor="let movie of favMovies; let i = index">
+      <mat-card>
         <mat-card-title class="info-header">Favourite Movies</mat-card-title>
-        <mat-card-title>{{ movie.Title }}</mat-card-title>
-        <img mat-card-lg-image src="https://my-films-db.herokuapp.com/{{ movie.ImagePath }}">
-        <mat-card-actions>
-          <mat-icon *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)"
-          >favorite</mat-icon>
-          <mat-icon *ngIf="!isFavorite(movie._id)"
-          >favorite_border</mat-icon>
-        </mat-card-actions>
+        <div *ngFor="let movie of favMovies; let i = index">
+          <mat-divider></mat-divider>
+          <img mat-card-lg-image src="https://my-films-db.herokuapp.com/{{ movie.ImagePath }}" class="movie-img-fav">
+          <mat-card-title class="movie-title-fav">{{ movie.Title }}</mat-card-title>
+          <mat-card-actions>
+
+            <button mat-mini-fab *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)">
+              <mat-icon>favorite</mat-icon>
+            </button>
+
+            <button mat-mini-fab *ngIf="!isFavorite(movie._id)">
+              <mat-icon>favorite_border</mat-icon>
+            </button>
+
+          </mat-card-actions>
+        </div>
       </mat-card>
     </div>
   </div>
