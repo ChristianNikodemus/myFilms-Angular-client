@@ -1,34 +1,41 @@
-
-
 .profile-container {
   margin: 64px 100px;
 }
 
-.welcome-text{
-padding-top: 1em;
-text-align: center;
+.welcome-text {
+  padding-top: 1em;
+  text-align: center;
 }
 
-.flex-container{
+.flex-container {
   display: flex;
 }
 
-.flex-left{
+.flex-left {
   flex: 1;
   margin-right: 1em;
 }
 
-.flex-right{
+.flex-right {
   flex: 1;
   margin-left: 1em;
 }
 
-.info-header{
+.info-header {
   text-align: center;
   margin-bottom: 1em;
 }
 
-.danger-zone{
+.danger-zone {
   text-align: center;
-  padding: 3em 0;
+  margin: 3em 0;
+
+}
+
+.warning-txt{
+  display: inline-block;
+  margin-right: 1em;
+  margin-top: 1em;
+
+
 }

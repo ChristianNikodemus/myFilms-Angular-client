@@ -26,6 +26,7 @@ import { MovieDirectorComponent } from './movie-director/movie-director.componen
 import { MovieGenreComponent } from './movie-genre/movie-genre.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDividerModule } from '@angular/material/divider';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProfileEditPageComponent } from './profile-edit-page/profile-edit-page.component';
 
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatIconModule,
     MatDatepickerModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

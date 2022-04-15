@@ -42,9 +42,12 @@ export class ProfilePageComponent implements OnInit {
     Birthday: this.user.Birthday,
   };
 
-  // date = new Intl.DateTimeFormat('en-US', {
-  //   dateStyle: 'full',
-  // }).format(new Date(this.user.Birthday.dateTime));
+  factorizeUser = (u: User) => ({
+    ...u,
+    Birthday: new Intl.DateTimeFormat('en-US', {
+      dateStyle: 'full',
+    }).format(new Date(u.Birthday)),
+  });
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -64,7 +67,7 @@ export class ProfilePageComponent implements OnInit {
       this.fetchApiData
         .getUser(this.username, this.token)
         .subscribe((resp: any) => {
-          this.user = resp;
+          this.user = this.factorizeUser(resp);
         });
     }
   }
@@ -88,10 +91,9 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getFavs(): void {
-    let movies: any[] = [];
     this.fetchApiData.getAllMovies(this.token).subscribe((res: any) => {
-      movies = res;
-      movies.forEach((movie: any) => {
+      this.movies = res;
+      this.movies.forEach((movie: any) => {
         if (this.user.FavouriteMovies.includes(movie._id)) {
           this.favMovies.push(movie);
           this.displayElement = true;
@@ -106,7 +108,10 @@ export class ProfilePageComponent implements OnInit {
         .removeMovie(this.username, this.token, movieID)
         .subscribe((user) => {
           console.log('-->', user);
-          this.user = user;
+          this.user = this.factorizeUser(user);
+          this.favMovies = this.movies.filter((movie) =>
+            this.user.FavouriteMovies.includes(movie._id)
+          );
         });
     }
   }

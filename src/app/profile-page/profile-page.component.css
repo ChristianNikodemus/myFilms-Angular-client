@@ -28,5 +28,11 @@
 
 .danger-zone {
   text-align: center;
-  padding: 3em 0;
+  margin: 3em 0;
+}
+
+.warning-txt {
+  display: inline-block;
+  margin-right: 1em;
+  margin-top: 1em;
 }
