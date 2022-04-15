@@ -6,6 +6,14 @@
   margin: 80px 1rem;
 }
 
-.mat-card {
-  flex: 1 1 auto;
+@media only screen and (max-width: 1022px) {
+  .movie-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .movie-cards-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
