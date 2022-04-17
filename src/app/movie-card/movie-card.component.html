@@ -1,46 +1,46 @@
 <app-navigation-bar></app-navigation-bar>
-<div class="movie-cards-container">
-  <mat-card *ngFor="let movie of movies;" class="mat-card">
-      <mat-card-title>{{movie.Title}}</mat-card-title>
-      <mat-card-content>
-        <mat-card-subtitle>Directed by: {{movie.DirectorDisplay}}</mat-card-subtitle>
-        <mat-card-subtitle *ngIf="movie.Featured">This movie is featured!</mat-card-subtitle>
-        <mat-card-subtitle *ngIf="!movie.Featured">This movie is NOT featured.</mat-card-subtitle>
-        <img mat-card-image src="https://my-films-db.herokuapp.com/{{movie.ImagePath}}" alt= {{movie.Title}} class="movie-img" >
-        <mat-card-actions>
-            <button
-                mat-stroked-button
-                color="primary"
-                (click)="openMovieGenreDialog(movie.Title, movie.Genre)"
-            >
-                Genre
-            </button>
-            <button
-                mat-stroked-button
-                color="primary"
-                (click)="openMovieDirectorDialog(movie.Title, movie.Director)"
-            >
-                Director
-            </button>
-            <button
-                mat-stroked-button
-                color="primary"
-                (click)="openMovieDescriptionDialog(movie.Title, movie.Description)"
-            >
-                Synopsis
-            </button>
-
-            <button mat-mini-fab *ngIf="!isFavorite(movie._id)" (click)="addFavorite(movie._id)" class="fav-icon">
-                <mat-icon 
-                >favorite_border</mat-icon>
-            </button>
-
-            <button mat-mini-fab *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)" class="fav-icon">
-                <mat-icon  
-                >favorite</mat-icon>
-            </button>
-
-        </mat-card-actions>
-      </mat-card-content>
-  </mat-card>
+<div class="movie-cards-container nav-buffer">
+    <mat-card *ngFor="let movie of movies;" class="mat-card">
+        <mat-card-title>{{movie.Title}}</mat-card-title>
+        <mat-card-content>
+          <mat-card-subtitle>Directed by: {{movie.DirectorDisplay}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="movie.Featured">This movie is featured!</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="!movie.Featured">This movie is NOT featured.</mat-card-subtitle>
+          <img mat-card-image src="https://my-films-db.herokuapp.com/{{movie.ImagePath}}" alt= {{movie.Title}} class="movie-img" >
+          <mat-card-actions>
+              <button
+                  mat-stroked-button
+                  color="primary"
+                  (click)="openMovieGenreDialog(movie.Title, movie.Genre)"
+              >
+                  Genre
+              </button>
+              <button
+                  mat-stroked-button
+                  color="primary"
+                  (click)="openMovieDirectorDialog(movie.Title, movie.Director)"
+              >
+                  Director
+              </button>
+              <button
+                  mat-stroked-button
+                  color="primary"
+                  (click)="openMovieDescriptionDialog(movie.Title, movie.Description)"
+              >
+                  Synopsis
+              </button>
+  
+              <button mat-mini-fab *ngIf="!isFavorite(movie._id)" (click)="addFavorite(movie._id)" class="fav-icon">
+                  <mat-icon 
+                  >favorite_border</mat-icon>
+              </button>
+  
+              <button mat-mini-fab *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)" class="fav-icon">
+                  <mat-icon  
+                  >favorite</mat-icon>
+              </button>
+  
+          </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
 </div>

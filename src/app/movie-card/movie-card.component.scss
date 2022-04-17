@@ -1,5 +1,7 @@
 .movie-cards-container {
-  margin: 80px 1rem;
+  max-width: 1200px;
+  padding: 2em 1em;
+  margin: 0 auto;
 
   // Grid layout
   --grid-layout-gap: 2rem;
