@@ -66,10 +66,6 @@ export class ProfilePageComponent implements OnInit {
 
   /**
    * Calls API endpoint to get user info
-   * @function getUser
-   * @param this.username
-   * @param this.token
-   * @return user data in JSON format
    */
   getUser(): void {
     console.log(this.token, this.username);
@@ -93,6 +89,10 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to let the user display their favorited movies
+   * @return
+   */
   getMovies(): void {
     this.token &&
       this.fetchApiData.getAllMovies(this.token).subscribe((resp: any) => {
@@ -123,12 +123,8 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * Function to let the user remove a movie from their favorited movies
-   * @function removeMovie
-   * @param this.username
-   * @param this.token
+   * Removes a movie from a users account information
    * @param movieID
-   * @returns updated user data in JSON format
    */
   removeFavorite(movieID: string): void {
     if (this.username && this.token) {
@@ -145,8 +141,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * Checks to see if each movie is a favourite,
-   * so any removed movies will not appear on profile
+   * Checks to see if each movie is a favourite
    * @param movieID
    */
   isFavorite(movieID: string): boolean {
