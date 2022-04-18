@@ -37,7 +37,7 @@ export class UserRegistrationFormComponent implements OnInit {
   /**
    * This is the function responsible for sending the form inputs to the backend
    * @function userRegistration
-   * @param userData {object}
+   * @param this.userData {object}
    * @return new user data in JSON format
    */
   registerUser(): void {

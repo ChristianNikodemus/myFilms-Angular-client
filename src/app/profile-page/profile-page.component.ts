@@ -34,6 +34,9 @@ export class ProfilePageComponent implements OnInit {
 
   user: any = {};
 
+  /**
+   * Store input value in userData
+   */
   @Input() userData = {
     Name: this.user.Name,
     Username: this.user.Username,
@@ -61,6 +64,13 @@ export class ProfilePageComponent implements OnInit {
     this.getFavs();
   }
 
+  /**
+   * Calls API endpoint to get user info
+   * @function getUser
+   * @param this.username
+   * @param this.token
+   * @return user data in JSON format
+   */
   getUser(): void {
     console.log(this.token, this.username);
     if (this.token && this.username) {
@@ -72,6 +82,11 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
+  /**
+   * function that will open dialog,
+   * when the 'Edit Account Information' button is clicked
+   * @module ProfileEditPageComponent
+   */
   openProfileEditPage(): void {
     this.dialog.open(ProfileEditPageComponent, {
       width: '300px',
@@ -90,6 +105,11 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
+  /**
+   * Function to let the user display their favorited movies
+   * @function getAllMovies
+   * @param this.token
+   */
   getFavs(): void {
     this.fetchApiData.getAllMovies(this.token).subscribe((res: any) => {
       this.movies = res;
@@ -102,6 +122,14 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  /**
+   * Function to let the user remove a movie from their favorited movies
+   * @function removeMovie
+   * @param this.username
+   * @param this.token
+   * @param movieID
+   * @returns updated user data in JSON format
+   */
   removeFavorite(movieID: string): void {
     if (this.username && this.token) {
       this.fetchApiData
@@ -116,6 +144,11 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
+  /**
+   * Checks to see if each movie is a favourite,
+   * so any removed movies will not appear on profile
+   * @param movieID
+   */
   isFavorite(movieID: string): boolean {
     if (this.user) {
       return this.user.FavouriteMovies.includes(movieID);

@@ -18,6 +18,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login-form.component.scss'],
 })
 export class UserLoginFormComponent implements OnInit {
+  /**
+   * Store input value in userData
+   */
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
@@ -29,14 +32,21 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * This is the function responsible for sending the form inputs to the backend
+   * @function userLogin
+   * @param this.userData
+   * @return user data in JSON format
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (result) => {
-        // Logic for a successful user login goes here! (To be implemented)
+        // Check for success and log data/token to localStorage
+
         console.log(result);
         localStorage.setItem('user', result.user.Username);
         localStorage.setItem('token', result.token);
+        // Logic for a successful user login goes here! (To be implemented)
         this.dialogRef.close(); // This will close the modal on success!
 
         this.snackBar.open(`Welcome, ${this.userData.Username}!`, 'OK', {
