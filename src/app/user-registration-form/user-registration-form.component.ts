@@ -15,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-registration-form.component.scss'],
 })
 export class UserRegistrationFormComponent implements OnInit {
+  errors: Array<{ msg: string }> = [];
+
   /**
    * Inputs values stored in userData
    */
@@ -55,7 +57,8 @@ export class UserRegistrationFormComponent implements OnInit {
         );
       },
       (result) => {
-        console.log(result);
+        console.log('-->', result);
+        this.errors = result.errors;
 
         this.snackBar.open(`Could not create user.`, 'OK', {
           duration: 2000,

@@ -3,6 +3,9 @@
     <mat-card-title>Sign Up!</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <ul>
+      <li *ngFor="let error of errors">{{error.msg}}</li>
+    </ul>
     <form>
       <mat-form-field>
         <input

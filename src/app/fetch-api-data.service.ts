@@ -67,7 +67,12 @@ export class FetchApiDataService {
     console.log(userDetails);
     return this.http
       .post<User>(apiUrl + 'users', userDetails)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(
+          (error: HttpErrorResponse): Observable<never> =>
+            throwError(error.error)
+        )
+      );
   }
 
   // User login
