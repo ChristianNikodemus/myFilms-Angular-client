@@ -21,6 +21,9 @@ export class ProfileEditPageComponent implements OnInit {
 
   user: any = {};
 
+  /**
+   * Inputs values stored in the userData object
+   */
   @Input() userData = {
     Name: this.user.Name,
     Username: this.user.Username,
@@ -38,6 +41,9 @@ export class ProfileEditPageComponent implements OnInit {
     this.getUser();
   }
 
+  /**
+   * Calls API endpoint to retrieve the Users information saved to the database
+   */
   getUser(): void {
     console.log(this.token, this.username);
     if (this.token && this.username) {
@@ -49,6 +55,9 @@ export class ProfileEditPageComponent implements OnInit {
     }
   }
 
+  /**
+   * Updates the new inputed values for the users userData object on the database
+   */
   editUser(): void {
     console.log(this.userData);
     this.fetchApiData

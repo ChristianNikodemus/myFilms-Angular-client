@@ -35,7 +35,7 @@ export class ProfilePageComponent implements OnInit {
   user: any = {};
 
   /**
-   * Store input value in userData
+   * Inputs values stored in the userData object
    */
   @Input() userData = {
     Name: this.user.Name,
@@ -45,6 +45,10 @@ export class ProfilePageComponent implements OnInit {
     Birthday: this.user.Birthday,
   };
 
+  /**
+   * Takes users date of birth and formats it for display
+   * @param u
+   */
   factorizeUser = (u: User) => ({
     ...u,
     Birthday: new Intl.DateTimeFormat('en-US', {
@@ -65,7 +69,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * Calls API endpoint to get user info
+   * Calls API endpoint to retrieve the Users information saved to the database
    */
   getUser(): void {
     console.log(this.token, this.username);
@@ -79,9 +83,8 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * function that will open dialog,
+   * Opens dialog for user to input new values for userData
    * when the 'Edit Account Information' button is clicked
-   * @module ProfileEditPageComponent
    */
   openProfileEditPage(): void {
     this.dialog.open(ProfileEditPageComponent, {
@@ -90,8 +93,9 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * Function to let the user display their favorited movies
-   * @return
+   * Retreives all movies from database
+   * so it can be utulized for the favourited movies on the display
+   * @return movie Objects to check
    */
   getMovies(): void {
     this.token &&
@@ -106,9 +110,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * Function to let the user display their favorited movies
-   * @function getAllMovies
-   * @param this.token
+   * Retrieves the movies that are apart of the users favourited movies
    */
   getFavs(): void {
     this.fetchApiData.getAllMovies(this.token).subscribe((res: any) => {
@@ -123,7 +125,8 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * Removes a movie from a users account information
+   * Removes a movie from the users userData object
+   * which stores their favourited movies
    * @param movieID
    */
   removeFavorite(movieID: string): void {
@@ -141,8 +144,9 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * Checks to see if each movie is a favourite
+   * Checks to see if each movie is apart of the users favourited movies
    * @param movieID
+   * @returns Movies that are apart of the users favourited movies
    */
   isFavorite(movieID: string): boolean {
     if (this.user) {
@@ -150,6 +154,9 @@ export class ProfilePageComponent implements OnInit {
     } else return false;
   }
 
+  /**
+   * Removes users account information from the database completely
+   */
   deleteUser(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
       this.fetchApiData.deleteUser(this.token, this.username).subscribe(() => {

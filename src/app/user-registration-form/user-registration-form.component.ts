@@ -18,7 +18,7 @@ export class UserRegistrationFormComponent implements OnInit {
   errors: Array<{ msg: string }> = [];
 
   /**
-   * Inputs values stored in userData
+   * Inputs values stored in the userData object
    */
   @Input() userData = {
     Name: '',
@@ -37,15 +37,11 @@ export class UserRegistrationFormComponent implements OnInit {
   ngOnInit(): void {}
 
   /**
-   * This is the function responsible for sending the form inputs to the backend
-   * @function userRegistration
-   * @param this.userData {object}
-   * @return new user data in JSON format
+   * Sends the users input values to the database to register their account
    */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result) => {
-        // Logic for a successful user registration goes here! (To be implemented)
         this.dialogRef.close(); // This will close the modal on success!
         console.log(result);
         this.snackBar.open(
