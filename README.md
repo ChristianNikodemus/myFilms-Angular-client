@@ -24,7 +24,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## TypeDoc Documentation
 
-Run `http-server doc` to build the documentation. Navigate to `http://localhost:8080`, or `http://localhost:` + the last 4 digits of the address shown beneath "Available on:" in your terminal.
+To open the TypeDoc documentation, simply navigate to docs folder at the first level of this project, then find the index.html file and open it within your internet browser.
+
+In order to actually build the documentation, run the command `http-server doc` in terminal within this project. Then navigate to `http://localhost:8080`, or `http://localhost:` + the last 4 digits of the address shown beneath "Available on:" in your terminal.
 
 ## Further help
 
