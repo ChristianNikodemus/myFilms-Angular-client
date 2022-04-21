@@ -26,7 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ### View TypeDoc Documentation
 
-To open the TypeDoc documentation, simply navigate to docs folder at the first level of this project, then find the index.html file and open it within your internet browser.
+To open the TypeDoc documentation, simply navigate to the folder called "docs" at the first level of this project, then find the "index.html" file and open it within your internet browser.
 
 ### Run TypeDoc Documentation Server
 
