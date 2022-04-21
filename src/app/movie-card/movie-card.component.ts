@@ -121,7 +121,7 @@ export class MovieCardComponent implements OnInit {
 
   /**
    * Retreives all movies from database
-   * so it can be utulized for the favourited movies on the display
+   * so it can be utulized in the movie cards
    * @return movie Objects to check
    */
   getMovies(): void {
