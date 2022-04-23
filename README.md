@@ -34,7 +34,7 @@ In order to run the documentation on a server, navigate to this project within t
 
 ### Build TypeDoc Documentation
 
-You may want to re-build the documentation, which is a benefit for if say for example, if another contributor adds additional TypeDoc comments. You can this by navigating to the project within the terminal and entering the command: `npx typedoc --out docs src/app/**/*.ts`, this will compile the comments to the docs folder at the main level of the project.
+You may want to re-build the documentation, which is a benefit for if say for example, if another contributor adds additional TypeDoc comments. First, ensure you are navigated to the top level of this projects folder structure within the terminal. Then, enter the command: `npx typedoc --out docs src/app/**/*.ts`. This will rebuild the TypeDoc documentation.
 
 ## Further help
 
