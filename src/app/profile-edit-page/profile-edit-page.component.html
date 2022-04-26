@@ -47,11 +47,16 @@
       required
       >
     </mat-form-field>
-    <button
-    mat-raised-button
-    (click)="editUser()"
-    color="primary"
-    >
-    Update Profile Information
-  </button>
+    <mat-card-actions>
+      <button
+      mat-raised-button
+      (click)="editUser()"
+      color="primary"
+      >
+      Update
+    </button>
+
+    <button mat-raised-button matDialogClose>Cancel</button>
+    
+  </mat-card-actions>
   </form>
